@@ -55,3 +55,17 @@ Add additional > characters for nested block quotes
 
 You can use other markdown elements inside of block quotes.
 
+### Code Blocks
+
+Make code blocks by surrounding text with back ticks (`).
+
+`I am a code block`
+
+### Tables
+
+Make tables with the following structure
+
+><p>| Header 1 | Header 2 | <br>
+>| --------- | --------- | <br>
+>| text here | text here | <br>
+>| text here | text here | </p>
