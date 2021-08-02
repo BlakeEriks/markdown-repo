@@ -40,6 +40,8 @@ All data in javascript is either a primitive or an object.
 * Pop() : remove last element from the array.
 * Shift() : remove first element from the array.
 * Splice(x,y,z) : starting at index x, remove y number of elements, and replace them with z
+* Slice(start, end) : returns shallow copy of portion of an array selected from the start to end (end not included), where start and end are indexes in the array
+* Join(delimiter) : creates and returns new string concatenating all elements in an array, separated by commas by default unless provided a different delimiter.
 
 **Loops** are used to repeat the same block of code.
 
