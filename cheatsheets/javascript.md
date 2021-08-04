@@ -1,6 +1,7 @@
 # Javascript
 
-All data in javascript is either a primitive or an object.  
+All data in javascript is either a primitive or an object.
+
 **Primitives** represent actual data.  
 * numbers
 * strings
@@ -55,3 +56,27 @@ All data in javascript is either a primitive or an object.
 * For in loop
     * Iterates through array indices
     * `for (poke in pokemon)`
+
+**Functions** are like a spell. It can be used at any time and does magical things like add numbers, create objects and more.
+
+#### Declaring a function:
+
+##### Classic Function Notation  
+>`function helloWorld() {}`
+
+##### Anonymous Function
+>`const helloWorld2 = function() {}`  
+
+##### Arrow Function
+>`const helloWorld3 = () => {}`
+
+##### Default Parameters
+``` 
+const helloWorld = (name = "Blake") => {
+   console.log('name');
+}
+ ```
+
+ ##### Implicit Return
+
+ `const sum = (x,y) => x + y`
