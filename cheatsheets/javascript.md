@@ -80,3 +80,41 @@ const helloWorld = (name = "Blake") => {
  ##### Implicit Return
 
  `const sum = (x,y) => x + y`
+
+ **Objects**  can store anything.
+
+ ```
+ const key = 'weapon';
+
+ const robot = {
+     name : 'BleepBlop',
+     serial : 1,
+     isEvil : false,
+     'Gas Tank' : 'full',
+     [key] : 'lazers'
+ }
+ ```
+
+* Notice keys with spaces need to be in quotes.
+* Can set dynamic keys with brackets -> see [key]
+
+**Object Methods** are functions inside of an object
+```
+const obj = {
+    prop: "Hello World",
+    myFunc : () => console.log(`can i use this... ${this.prop}`),
+    myFunc2 : function() {console.log(`can i use this... ${this.prop}`)},
+    myFunc3() {console.log(`can i use this... ${this.prop}`)}
+}
+
+obj.myFunc();
+obj.myFunc2();
+obj.myFunc3();
+```
+This outputs:
+```
+can i use this... undefined
+can i use this... Hello World
+can i use this... Hello World
+```
+Arrow functions cannot use the **this** keyword!
