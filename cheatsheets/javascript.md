@@ -118,3 +118,57 @@ can i use this... Hello World
 can i use this... Hello World
 ```
 Arrow functions cannot use the **this** keyword!
+
+**Object Oriented Programming** is built around:
+
+* *Encapsulation*: abstracting an idea into a defined construct
+* *Inheritance*: being able extend constructs to add functionality
+* *Polymorphism*: The idea that on construct can be used in many ways 
+
+A **class** allows use to pre-define an object before it's created and the kind of variables and functions that object can use.
+
+```
+class Animal {
+    constructor(sound, ears, legs){
+        this.sound = sound
+        this.ears = ears
+        this.legs = legs
+    }
+    makeSound(){
+        console.log(this.sound)
+    }
+}
+```
+
+You can take advantage of inheritance and create a child class using the extends keyword.
+
+```
+class Pig extends Animal {
+    constructor(name){
+        super("oink", 2, 4)
+        this.name = name
+    }
+    rollInMud(){
+        console.log(`${this.name} rolls in mud and says ${this.sound}`)
+    }
+}
+```
+
+**Static** properties or methods belong to the class, not the instance.
+
+```
+class Pig extends Animal {
+
+    static count = 0;
+
+    constructor(){
+        Pig.count++
+    }
+
+    static countPigs(){
+        return Pigs.count
+    }
+}
+```
+
+Notice how **count** is referenced by the Class name, not the instance name. Static methods are required in order to access static properties.
