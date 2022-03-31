@@ -101,3 +101,7 @@ This function simply takes an **address** and returns how many tokens that **add
 ### ownerOf Function
 
 This function takes a token ID and returns the address of whoever owns it.
+
+## Web3.js
+
+Web3 JS is an api on top of JSON-RPC which allows us to communicate to the ethereum network using javascript.
