@@ -154,3 +154,49 @@ Example:
 ```js
 myContract.methods.myMethod(123).send()
 ```
+
+Sending a transaction in web3.js requires a **from** address of who's calling the function (this becomes the msg.sender address in the contract). There will be a significant delay when sending a transaction, as we must wait for it to be included in a block on the blockchain.
+
+**Send** has event listeners **receipt** (success) and **error**.
+
+When calling **send**, you can optionally specify **gas** and **gasPrice** as the programmer, otherwise MetaMask will allow the user to specify these values.
+
+Web3.js lets us listen for Solidity firing events that we write in our contract.
+
+Example
+
+```js
+cryptoZombies.events.NewZombie()
+.on("data", function(event) {
+  let zombie = event.returnValues;
+  // We can access this event's 3 return values on the `event.returnValues` object:
+  console.log("A new zombie was born!", zombie.zombieId, zombie.name, zombie.dna);
+}).on("error", console.error);
+```
+
+This will notify our user whenever ANY new zombie is created. What if we only wanted alerts when the current user created a new zombie.
+
+In order to filter events, our Solidity contract would need to use the **indexed** keyword.
+
+Example filter of indexed event
+```js
+// Use `filter` to only fire this code when `_to` equals `userAccount`
+cryptoZombies.events.Transfer({ filter: { _to: userAccount } })
+.on("data", function(event) {
+  let data = event.returnValues;
+  // The current user just received a zombie!
+  // Do something here to update the UI to show it
+}).on("error", console.error);
+```
+
+We can query for past events using getPastEvents, and use the filters **fromBlock** and **toBlock** to give Solidity a time range for the logs. Block refers to the block number. 
+
+```js
+cryptoZombies.getPastEvents("NewZombie", { fromBlock: 0, toBlock: "latest" })
+.then(function(events) {
+  // `events` is an array of `event` objects that we can iterate, like we did above
+  // This code will get us a list of every zombie that was ever created
+});
+```
+
+> This presents a use case of using events as a cheaper form of storage, as saving data to the blockchain is very expensive. Using events is much much cheaper in terms of gas. The tradeoff comes into play when considering events are not readable from inside the smart contract itself. If you wanted some data to be historically recorded on the blockchain, events are a good contender.
