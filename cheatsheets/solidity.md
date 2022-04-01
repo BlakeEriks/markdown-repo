@@ -105,3 +105,52 @@ This function takes a token ID and returns the address of whoever owns it.
 ## Web3.js
 
 Web3 JS is an api on top of JSON-RPC which allows us to communicate to the ethereum network using javascript.
+
+## Metamask
+
+Metamask is a browser extension for Chrome and Firefox allowing users to securely manage their ethereum accounts and private keys, as well as use these accounts to interact with websites that use web3.js. 
+
+Check for metamask:
+
+```js
+window.addEventListener('load', function() {
+
+  // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+  if (typeof web3 !== 'undefined') {
+    // Use Mist/MetaMask's provider
+    web3js = new Web3(web3.currentProvider);
+  } else {
+    // Handle the case where the user doesn't have web3. Probably
+    // show them a message telling them to install Metamask in
+    // order to use our app.
+  }
+
+  // Now you can start your app & access web3js freely:
+  startApp()
+
+})
+```
+
+Web3 needs two pieces of information to talk to your deployed contract. The **address** and the **ABI**.
+
+The **address** is the identifier where the contract lives on the blockchain. The **ABI** stands for Application Binary Interface, and it represents the contracts public methods, indicating to Web3.js how the contract can be interacted with. 
+
+### **Web3.js Contract Functions**
+
+Web3.js provides two methods we can use to call functions on our contract - *call* and _send_.
+
+**Call** is used for **view** and **pure** functions. It will only run on the local node, and won't create a new transaction on the blockchain. These functions are read-only, and don't change any state on the blockchain. The user won't be prompted to sign any transaction with MetaMask when these occur.
+
+Here's an example:
+
+```js
+myContract.methods.myMethod(123).call()
+```
+
+**Send** will create a transaction and change data on the blockchain, thus charging gas. Calling **send** is required for any function not labeled as view or pure. Metamask will popup for the user when this is called, and prompt them to sign the transaction and pay for the gas fee.
+
+Example:
+
+```js
+myContract.methods.myMethod(123).send()
+```
